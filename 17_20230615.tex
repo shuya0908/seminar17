@@ -16,4 +16,17 @@
 \setcounter{subsection}{2}
 \subsection{Solutions of Stochastic Differential Equations as Markov Processes}
 
+この節では，$\sigma(t, y)=\sigma(y), b(t, y)=b(y)$ として同様の場合を考える．
+前の節では $\sigma, b$ に対し Lipschitz 条件，つまりある $K\ge0$ が存在し，任意の $x, y\in\real^d$ に対して
+\begin{align}
+    \lvert \sigma(x)-\sigma(y)\rvert \le K\lvert x-y\rvert,\quad
+    \lvert b(x)-b(y)\rvert \le K\lvert x-y\rvert
+\end{align}
+が成り立つことを仮定していた．
+
+$X^x$: $E_x(\sigma, b)$ の解とする ($x\in\real^d$).
+weak uniqueness が成り立つため，任意の $t\ge0$ に対し $X_t^x$ の分布は解の選び方に依らない\nazo．
+実際，この分布は $C(\real_+, \real^d)$ 上の，写像 $w\mapsto F_x(w)_t$ の下での Wiener 測度の像である（$F_x$: Theorem 8.5 で導入された写像）．
+また次の定理では $X_t^x$ の像が変数の組 $(x, t)$ に連続的に依存することを示す．
+
 \end{document}
