@@ -29,4 +29,17 @@ weak uniqueness が成り立つため，任意の $t\ge0$ に対し $X_t^x$ の�
 実際，この分布は $C(\real_+, \real^d)$ 上の，写像 $w\mapsto F_x(w)_t$ の下での Wiener 測度の像である（$F_x$: Theorem 8.5 で導入された写像）．
 また次の定理では $X_t^x$ の像が変数の組 $(x, t)$ に連続的に依存することを示す．
 
+\setcounter{thm}{5}
+\begin{screen}
+    \begin{thm}
+        $(X_t)_{t\ge0}$: (complete) filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t), P)$ 上の $E(\sigma, b)$ の解 \\
+        $\implies (X_t)_{t\ge0}$: filtration $(\mathcal{F}_t)$ に関する Markov 過程であり，
+        \begin{align}
+            Q_{t}f(x)
+            = E[f(X_t^x)]
+        \end{align}
+        の形で定まる半群 $(Q_t)_{t\ge0}$ が定義される（$X^x$: $E_x(\sigma, b)$ の任意の解）．
+    \end{thm}
+\end{screen}
+
 \end{document}
