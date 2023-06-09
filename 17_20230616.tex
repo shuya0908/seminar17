@@ -16,4 +16,33 @@
 \setcounter{subsection}{2}
 \subsection{Solutions of Stochastic Differential Equations as Markov Processes}
 
+コンパクトサポートを持つ $\real^d$ 上の二階連続的微分可能な実数値関数全体の集合を $C_c^2(\mathbf{R}^d)$ と表す：
+\begin{align}
+    C_c^2(\mathbf{R}^d)
+    := \{f\in C^2(\mathbf{R}^d):\operatorname{supp}(f)\text{ はコンパクト}\}
+\end{align}
+
+\setcounter{thm}{6}
+\begin{screen}
+    \begin{thm}\label{thm:807}~
+        \begin{enumerate}[label=(\arabic*)]
+            \item
+            半群 $(Q_t)_{t\ge0}$ は Feller 過程である．
+            \item
+            $(Q_t)_{t\ge0}$ の生成作用素 $L$ は
+            \begin{align}
+                C_c^2(\mathbf{R}^d)
+                \subset D(L)
+            \end{align}
+            を満たし，任意の $f\in C_c^2(\mathbf{R}^d)$ に対して
+            \begin{align}
+                Lf(x)
+                = \frac{1}{2}\sum_{i=1}^{d}\sum_{j=1}^{d}(\sigma\sigma^{\ast})_{ij}(x)\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(x)
+                + \sum_{i=1}^{d}b_{i}(x)\frac{\partial f}{\partial x_{i}}(x)
+            \end{align}
+            が成り立つ（ただし $\sigma^{\ast}$: $\sigma$ の転置行列）．
+        \end{enumerate}
+    \end{thm}
+\end{screen}
+
 \end{document}
