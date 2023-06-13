@@ -82,10 +82,11 @@
                 + E[(\int_{0}^{t}b(X_{s}^{x})ds)^2]) \\
                 &\le 2(E[\int_{0}^{t}(\sigma(X_{s}^{x}))^{2}ds]
                 + tE[\int_{0}^{t}(b(X_{s}^{x}))^{2}ds]) \\
-                &\le 2\sup_{x\in\mathbf{R}^d}((\sigma(x))^2\vee(b(x))^2)(t+t^2).
+                &\le 2(\lVert \sigma^2\rVert t+\lVert b^2\rVert t^2) \\
+                &\le 2(\lVert \sigma^2\rVert\vee\lVert b^2\rVert)(t+t^2).
             \end{align}
 
-            ここで $C:=2\sup_{x\in\mathbf{R}^d}((\sigma(x))^2\vee(b(x))^2)$ と定めると，これは $t, x$ に依らない定数で
+            ここで $C:=2(\lVert \sigma^2\rVert\vee\lVert b^2\rVert)$ と定めると，これは $t, x$ に依らない定数で
             \begin{align}
                 E[(X_{t}^{x}-x)^2]
                 \le C(t+t^2).
