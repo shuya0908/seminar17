@@ -45,4 +45,59 @@
     \end{thm}
 \end{screen}
 
+\begin{proof}
+    問題を単純にするため，$\sigma, b$ が有界の場合のみ示す（一般の場合？）．
+    \begin{enumerate}[label=(\arabic*)]
+        \item
+        示すべきことは
+        \begin{enumerate}[label=(\roman*)]
+            \item
+            $\forall f\in C_{0}(\mathbf{R}^d), Q_{t}f\in C_{0}(\mathbf{R}^d)$
+            \item
+            $\forall f\in C_{0}(\mathbf{R}^d), \lVert Q_{t}f-f\rVert\xrightarrow{t\to0}0$
+        \end{enumerate}
+        の 2 つ．
+
+        $f\in C_{0}(\mathbf{R}^d)$: 固定．
+        \begin{enumerate}[label=(\roman*)]
+            \item
+            写像 $x\mapsto F_{x}(w)$ が連続であること，式 (8.2)
+            \begin{align}
+                Q_{t}f(x)
+                = \int_{C(\mathbf{R_+}, \mathbf{R}^{m})}f(F_{x}(w)_{t})W(dw)
+            \end{align}
+            と優収束定理より $Q_{t}f$: 連続．
+            \begin{align}
+                X_{t}^{x}
+                = x
+                + \int_{0}^{t}\sigma(X_{s}^{x})dB_{s}
+                + \int_{0}^{t}b(X_{s}^{x})ds
+            \end{align}
+            と書けることと，$\sigma, b$: 有界より
+            \begin{align}
+                E[(X_{t}^{x}-x)^2]
+                &= E[(\int_{0}^{t}\sigma(X_{s}^{x})dB_{s}
+                + \int_{0}^{t}b(X_{s}^{x})ds)^2] \\
+                &\le 2(E[(\int_{0}^{t}\sigma(X_{s}^{x})dB_{s})^2]
+                + E[(\int_{0}^{t}b(X_{s}^{x})ds)^2]) \\
+                &\le 2(E[\int_{0}^{t}(\sigma(X_{s}^{x}))^{2}ds]
+                + tE[\int_{0}^{t}(b(X_{s}^{x}))^{2}ds]) \\
+                &\le 2\sup_{x\in\mathbf{R}^d}((\sigma(x))^2\vee(b(x))^2)(t+t^2).
+            \end{align}
+
+            ここで $C:=2\sup_{x\in\mathbf{R}^d}((\sigma(x))^2\vee(b(x))^2)$ と定めると，これは $t, x$ に依らない定数で
+            \begin{align}
+                E[(X_{t}^{x}-x)^2]
+                \le C(t+t^2).
+                \label{eq:804}
+            \end{align}
+            \item
+            
+        \end{enumerate}
+        
+        \item
+        
+    \end{enumerate}
+\end{proof}
+
 \end{document}
