@@ -61,12 +61,12 @@
         $f\in C_{0}(\mathbf{R}^d)$: 固定．
         \begin{enumerate}[label=(\roman*)]
             \item
-            写像 $x\mapsto F_{x}(w)$ が連続であること，式 (8.2)
+            写像 $x\mapsto F_{x}(w)$ が連続であること，(8.2) 式
             \begin{align}
                 Q_{t}f(x)
                 = \int_{C(\mathbf{R_+}, \mathbf{R}^{m})}f(F_{x}(w)_{t})W(dw)
             \end{align}
-            と優収束定理より $Q_{t}f$: 連続．
+            と優収束定理より $Q_{t}f$: 連続\nazo．
             \begin{align}
                 X_{t}^{x}
                 = x
@@ -87,11 +87,48 @@
             \end{align}
 
             ここで $C:=2(\lVert \sigma^2\rVert\vee\lVert b^2\rVert)$ と定めると，これは $t, x$ に依らない定数で
+            \setcounter{equation}{3}
             \begin{align}
-                E[(X_{t}^{x}-x)^2]
+                \sup_{x\in\mathbf{R}^d}E[(X_{t}^{x}-x)^2]
                 \le C(t+t^2).
                 \label{eq:804}
             \end{align}
+
+            $\forall t\ge0$ に対し，Markov の不等式（Chebyshev の不等式の特別な場合）と \eqref{eq:804} より
+            \begin{align}
+                \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>A)
+                &\le \frac{\sup_{x\in\mathbf{R}^d}E[(X_{t}^{x}-x)^2]}{A^2} \\
+                &\le \frac{C(t+t^2)}{A^2}\xrightarrow{A\to\infty}0.
+            \end{align}
+
+            一方
+            \begin{align}
+                \lvert Q_{t}f(x)\rvert
+                &= \lvert E[f(X_{t}^{x})]\rvert \\
+                &\le \lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
+                + \lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert>A\}}]\rvert \\
+                &\le \lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
+                + \lVert f\rVert P(\lvert X_{t}^{x}-x\rvert>A).
+            \end{align}
+
+            これと $f\in C_{0}(\mathbf{R}^d)$ より
+            \begin{align}
+                \limsup_{x\to\infty}\lvert Q_{t}f(x)\rvert
+                &\le \limsup_{x\to\infty}\lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
+                + \lVert f\rVert \limsup_{x\to\infty}P(\lvert X_{t}^{x}-x\rvert>A) \\
+                &\le \lvert E[\limsup_{x\to\infty}f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
+                + \lVert f\rVert \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>A) \\
+                &= \lVert f\rVert \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>A).
+            \end{align}
+
+            よって $A$ の任意性より $\limsup_{x\to\infty}\lvert Q_{t}f(x)\rvert=0.$
+            したがって $\lim_{x\to\infty}\lvert Q_{t}f(x)\rvert=0$ より 
+            \begin{align}
+                \lim_{x\to\infty}Q_{t}f(x)=0.
+            \end{align}
+            
+            以上より $Q_{t}f$ は $\mathbf{R}^d$ 上の実数値連続関数で $\lim_{x\to\infty}Q_{t}f(x)=0$ を満たすので $Q_{t}f\in C_{0}(\mathbf{R}^d).$
+                
             \item
             
         \end{enumerate}
