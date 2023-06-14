@@ -130,19 +130,30 @@
             以上より $Q_{t}f$ は $\mathbf{R}^d$ 上の実数値連続関数で $\lim_{x\to\infty}Q_{t}f(x)=0$ を満たすので $Q_{t}f\in C_{0}(\mathbf{R}^d).$
                 
             \item
-            $\varepsilon>0$: 固定．
+            $\forall \varepsilon>0$: 固定．
             \begin{align}
                 \sup_{x\in\mathbf{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert
                 \le \sup_{x, y\in\mathbf{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
-                + 2\lVert f\rVert\sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon).
+                + 2\lVert f\rVert\sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)\nazo.
             \end{align}
 
             ここで \eqref{eq:804} 及び Markov の不等式より
             \begin{align}
                 \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)
-                \xrightarrow{t\to0}0.
+                \le \frac{C(t+t^2)}{\varepsilon^2}\xrightarrow{t\to0}0.
             \end{align}
+
+            よって
+            \begin{align}
+                \limsup_{t\to0}\lVert Q_{t}f-f\rVert
+                &= \limsup_{t\to0}(\sup_{x\in\mathbf{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert) \\
+                &\le \sup_{x, y\in\mathbf{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
+            \end{align}
+            となるが，$f$ の連続性より $\varepsilon$ を十分小さくとれば LHS $=0.$
+            したがって $\lim_{t\to0}\lVert Q_{t}f-f\rVert.$
         \end{enumerate}
+
+        以上より $(Q_{t})_{t\ge0}$ は Feller 過程であることが示された．
         
         \item
         
