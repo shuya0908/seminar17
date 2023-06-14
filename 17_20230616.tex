@@ -27,7 +27,7 @@
     \begin{thm}\label{thm:807}~
         \begin{enumerate}[label=(\arabic*)]
             \item
-            半群 $(Q_t)_{t\ge0}$ は Feller 過程である．
+            半群 $(Q_t)_{t\ge0}$ は Feller 半群である．
             \item
             $(Q_t)_{t\ge0}$ の生成作用素 $L$ は
             \begin{align}
@@ -37,7 +37,7 @@
             を満たし，任意の $f\in C_c^2(\mathbf{R}^d)$ に対して
             \begin{align}
                 Lf(x)
-                = \frac{1}{2}\sum_{i=1}^{d}\sum_{j=1}^{d}(\sigma\sigma^{\ast})_{ij}(x)\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(x)
+                = \frac{1}{2}\sum_{i, j=1}^{d}(\sigma\sigma^{\ast})_{ij}(x)\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(x)
                 + \sum_{i=1}^{d}b_{i}(x)\frac{\partial f}{\partial x_{i}}(x)
             \end{align}
             が成り立つ（ただし $\sigma^{\ast}$: $\sigma$ の転置行列）．
@@ -67,6 +67,10 @@
                 = \int_{C(\mathbf{R_+}, \mathbf{R}^{m})}f(F_{x}(w)_{t})W(dw)
             \end{align}
             と優収束定理より $Q_{t}f$: 連続\nazo．
+            
+            \begin{screen}
+                $\because)$
+            \end{screen}
             \begin{align}
                 X_{t}^{x}
                 = x
@@ -136,6 +140,10 @@
                 \le \sup_{x, y\in\mathbf{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
                 + 2\lVert f\rVert\sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)\nazo.
             \end{align}
+            
+            \begin{screen}
+                $\because)$
+            \end{screen}
 
             ここで \eqref{eq:804} 及び Markov の不等式より
             \begin{align}
@@ -153,10 +161,119 @@
             したがって $\lim_{t\to0}\lVert Q_{t}f-f\rVert.$
         \end{enumerate}
 
-        以上より $(Q_{t})_{t\ge0}$ は Feller 過程であることが示された．
+        以上より $(Q_{t})_{t\ge0}$ は Feller 半群であることが示された．
         
         \item
+        $f\in C_{c}^2(\mathbf{R}^d)$ とする．
+        $f(X_{t}^{x})=f(X_{t}^{x, 1},\dotsb, X_{t}^{x, d})$ に対し It\^{o}'s formula を適用すると
+        \begin{align}
+            f(X_{t}^{x})
+            &= f(x)
+            + \sum_{i=1}^{d}\int_{0}^{t}\frac{\partial f}{\partial x_{i}}(X_{s}^{x})dX_{s}^{x, i}
+            + \frac{1}{2}\sum_{i, i'=1}^{d}\int_{0}^{t}\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(X_{s}^{x})d\langle X^{x, i}, X^{x, i'}\rangle_{s}.
+        \end{align}
+
+        ここで
+        \begin{itemize}
+            \item 
+            $\displaystyle X_{t}^{x, i}
+            = x_i
+            + \sum_{j=1}^{m}\int_{0}^{t}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}
+            + \int_{0}^{t}b_{i}(X_{s}^{x})ds$ \\
+            $\displaystyle \implies dX_{s}^{x, i}
+            = \sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}
+            + b_{i}(X_{s}^{x})ds$
+            \item 
+            $\displaystyle d\langle X^{x, i}, X^{x, i'}\rangle_{s}
+            = \sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})\sigma_{i'j}(X_{s}^{x})ds
+            = (\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})ds$
+        \end{itemize}
+        が成り立つ．
+
+        \begin{screen}
+            $\because)$
+        \end{screen}
         
+        これらより
+        \begin{align}
+            f(X_{t}^{x})
+            &=
+            \begin{multlined}[t]
+                f(x)
+                + \sum_{i=1}^{d}\int_{0}^{t}\frac{\partial f}{\partial x_{i}}(X_{s}^{x})\left\{\sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}+b_{i}(X_{s}^{x})ds\right\} \\
+                + \frac{1}{2}\sum_{i, i'=1}^{d}\int_{0}^{t}\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(X_{s}^{x})\{(\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})ds\}
+            \end{multlined} \\
+            &=
+            \begin{multlined}[t]
+                f(x)
+                + \UB{\sum_{i=1}^{d}\sum_{j=1}^{m}\int_{0}^{t}\sigma_{ij}(X_{s}^{x})\frac{\partial f}{\partial x_{i}}(X_{s}^{x})dB_{s}^{j}}{=:M_{t}\text{ (CLM)}}
+                + \sum_{i=1}^{d}\int_{0}^{t}b_{i}(X_{s}^{x})\frac{\partial f}{\partial x_{i}}(X_{s}^{x})ds \\
+                + \frac{1}{2}\sum_{i, i'=1}^{d}\int_{0}^{t}(\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(X_{s}^{x})ds
+            \end{multlined} \\
+            &=
+            \begin{multlined}[t]
+                f(x)
+                + M_{t}
+                + \sum_{i=1}^{d}\int_{0}^{t}b_{i}(X_{s}^{x})\frac{\partial f}{\partial x_{i}}(X_{s}^{x})ds \\
+                + \frac{1}{2}\sum_{i, i'=1}^{d}\int_{0}^{t}(\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(X_{s}^{x})ds.
+            \end{multlined}
+        \end{align}
+
+        ここで
+        \begin{align}
+            g(x)
+            := \frac{1}{2}\sum_{i, i'=1}^{d}(\sigma\sigma^{\ast})_{ii'}(x)\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(x)
+            + \sum_{i=1}^{d}b_{i}(x)\frac{\partial f}{\partial x_{i}}(x)
+        \end{align}
+        と定めると，$g\in C_{0}(\mathbf{R}^d)\nazo.$
+        
+        \begin{screen}
+            $\because)$
+        \end{screen}
+
+        よって
+        \begin{align}
+            M_{t}
+            = f(X_{t}^{x})
+            - f(x)
+            - \int_{0}^{t}g(X_{s}^{x})ds
+        \end{align}
+        と表せるが，$f, g$: 有界より $M$ は有界 CLM であり，Proposition 4.7 (ii) から UIM であることまで言える．
+        $M$ の martingale 性より
+        \begin{align}
+            E[f(X_{t}^{x})
+            - f(x)
+            - \int_{0}^{t}g(X_{s}^{x})ds]
+            = 0.
+        \end{align}
+
+        一方，
+        \begin{align}
+            E[f(X_{t}^{x})
+            - f(x)
+            - \int_{0}^{t}g(X_{s}^{x})ds]
+            &= E[f(X_{t}^{x})]
+            - f(x)
+            - \int_{0}^{t}E[g(X_{s}^{x})]ds \\
+            &= Q_{t}f(x)
+            - f(x)
+            - \int_{0}^{t}Q_{s}g(x)ds.
+        \end{align}
+        \begin{align}
+            \therefore 
+            Q_{t}f(x) - f(x)
+            = \int_{0}^{t}Q_{s}g(x)ds.
+        \end{align}
+
+        $(Q_{t})_{t\ge0}$ が Feller 半群であることから
+        \begin{align}
+            Lf
+            = \lim_{t\to0}\frac{Q_{t}f - f}{t}
+            = \lim_{t\to0}\frac{1}{t}\int_{0}^{t}Q_{s}gds
+            = g.
+        \end{align}
+
+        したがって $f\in D(L)$ かつ $Lf=g$ が言えた．
     \end{enumerate}
 \end{proof}
 
