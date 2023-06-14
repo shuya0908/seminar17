@@ -16,10 +16,10 @@
 \setcounter{subsection}{2}
 \subsection{Solutions of Stochastic Differential Equations as Markov Processes}
 
-コンパクトサポートを持つ $\real^d$ 上の二階連続的微分可能な実数値関数全体の集合を $C_c^2(\mathbf{R}^d)$ と表す：
+コンパクトサポートを持つ $\real^d$ 上の二階連続的微分可能な実数値関数全体の集合を $C_c^2(\mathbb{R}^d)$ と表す：
 \begin{align}
-    C_c^2(\mathbf{R}^d)
-    := \{f\in C^2(\mathbf{R}^d):\operatorname{supp}(f)\text{ はコンパクト}\}
+    C_c^2(\mathbb{R}^d)
+    := \{f\in C^2(\mathbb{R}^d):\operatorname{supp}(f)\text{ はコンパクト}\}
 \end{align}
 
 \setcounter{thm}{6}
@@ -31,10 +31,10 @@
             \item
             $(Q_t)_{t\ge0}$ の生成作用素 $L$ は
             \begin{align}
-                C_c^2(\mathbf{R}^d)
+                C_c^2(\mathbb{R}^d)
                 \subset D(L)
             \end{align}
-            を満たし，任意の $f\in C_c^2(\mathbf{R}^d)$ に対して
+            を満たし，任意の $f\in C_c^2(\mathbb{R}^d)$ に対して
             \begin{align}
                 Lf(x)
                 = \frac{1}{2}\sum_{i, j=1}^{d}(\sigma\sigma^{\ast})_{ij}(x)\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(x)
@@ -52,19 +52,19 @@
         示すべきことは
         \begin{enumerate}[label=(\roman*)]
             \item
-            $\forall f\in C_{0}(\mathbf{R}^d), Q_{t}f\in C_{0}(\mathbf{R}^d)$
+            $\forall f\in C_{0}(\mathbb{R}^d), Q_{t}f\in C_{0}(\mathbb{R}^d)$
             \item
-            $\forall f\in C_{0}(\mathbf{R}^d), \lVert Q_{t}f-f\rVert\xrightarrow{t\to0}0$
+            $\forall f\in C_{0}(\mathbb{R}^d), \lVert Q_{t}f-f\rVert\xrightarrow{t\to0}0$
         \end{enumerate}
         の 2 つ．
 
-        $f\in C_{0}(\mathbf{R}^d)$: 固定．
+        $f\in C_{0}(\mathbb{R}^d)$: 固定．
         \begin{enumerate}[label=(\roman*)]
             \item
             写像 $x\mapsto F_{x}(w)$ が連続であること，(8.2) 式
             \begin{align}
                 Q_{t}f(x)
-                = \int_{C(\mathbf{R_+}, \mathbf{R}^{m})}f(F_{x}(w)_{t})W(dw)
+                = \int_{C(\mathbb{R_+}, \mathbb{R}^{m})}f(F_{x}(w)_{t})W(dw)
             \end{align}
             と優収束定理より $Q_{t}f$: 連続\nazo．
             
@@ -93,15 +93,15 @@
             ここで $C:=2(\lVert \sigma^2\rVert\vee\lVert b^2\rVert)$ と定めると，これは $t, x$ に依らない定数で
             \setcounter{equation}{3}
             \begin{align}
-                \sup_{x\in\mathbf{R}^d}E[(X_{t}^{x}-x)^2]
+                \sup_{x\in\mathbb{R}^d}E[(X_{t}^{x}-x)^2]
                 \le C(t+t^2).
                 \label{eq:804}
             \end{align}
 
             $\forall t\ge0$ に対し，Markov の不等式（Chebyshev の不等式の特別な場合）と \eqref{eq:804} より
             \begin{align}
-                \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>A)
-                &\le \frac{\sup_{x\in\mathbf{R}^d}E[(X_{t}^{x}-x)^2]}{A^2} \\
+                \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>A)
+                &\le \frac{\sup_{x\in\mathbb{R}^d}E[(X_{t}^{x}-x)^2]}{A^2} \\
                 &\le \frac{C(t+t^2)}{A^2}\xrightarrow{A\to\infty}0.
             \end{align}
 
@@ -115,14 +115,14 @@
                 + \lVert f\rVert P(\lvert X_{t}^{x}-x\rvert>A).
             \end{align}
 
-            これと $f\in C_{0}(\mathbf{R}^d)$ より
+            これと $f\in C_{0}(\mathbb{R}^d)$ より
             \begin{align}
                 \limsup_{x\to\infty}\lvert Q_{t}f(x)\rvert
                 &\le \limsup_{x\to\infty}\lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
                 + \lVert f\rVert \limsup_{x\to\infty}P(\lvert X_{t}^{x}-x\rvert>A) \\
                 &\le \lvert E[\limsup_{x\to\infty}f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
-                + \lVert f\rVert \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>A) \\
-                &= \lVert f\rVert \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>A).
+                + \lVert f\rVert \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>A) \\
+                &= \lVert f\rVert \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>A).
             \end{align}
 
             よって $A$ の任意性より $\limsup_{x\to\infty}\lvert Q_{t}f(x)\rvert=0.$
@@ -131,14 +131,14 @@
                 \lim_{x\to\infty}Q_{t}f(x)=0.
             \end{align}
             
-            以上より $Q_{t}f$ は $\mathbf{R}^d$ 上の実数値連続関数で $\lim_{x\to\infty}Q_{t}f(x)=0$ を満たすので $Q_{t}f\in C_{0}(\mathbf{R}^d).$
+            以上より $Q_{t}f$ は $\mathbb{R}^d$ 上の実数値連続関数で $\lim_{x\to\infty}Q_{t}f(x)=0$ を満たすので $Q_{t}f\in C_{0}(\mathbb{R}^d).$
                 
             \item
             $\forall \varepsilon>0$: 固定．
             \begin{align}
-                \sup_{x\in\mathbf{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert
-                \le \sup_{x, y\in\mathbf{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
-                + 2\lVert f\rVert\sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)\nazo.
+                \sup_{x\in\mathbb{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert
+                \le \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
+                + 2\lVert f\rVert\sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)\nazo.
             \end{align}
             
             \begin{screen}
@@ -147,15 +147,15 @@
 
             ここで \eqref{eq:804} 及び Markov の不等式より
             \begin{align}
-                \sup_{x\in\mathbf{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)
+                \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)
                 \le \frac{C(t+t^2)}{\varepsilon^2}\xrightarrow{t\to0}0.
             \end{align}
 
             よって
             \begin{align}
                 \limsup_{t\to0}\lVert Q_{t}f-f\rVert
-                &= \limsup_{t\to0}(\sup_{x\in\mathbf{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert) \\
-                &\le \sup_{x, y\in\mathbf{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
+                &= \limsup_{t\to0}(\sup_{x\in\mathbb{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert) \\
+                &\le \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
             \end{align}
             となるが，$f$ の連続性より $\varepsilon$ を十分小さくとれば LHS $=0.$
             したがって $\lim_{t\to0}\lVert Q_{t}f-f\rVert.$
@@ -164,7 +164,7 @@
         以上より $(Q_{t})_{t\ge0}$ は Feller 半群であることが示された．
         
         \item
-        $f\in C_{c}^2(\mathbf{R}^d)$ とする．
+        $f\in C_{c}^2(\mathbb{R}^d)$ とする．
         $f(X_{t}^{x})=f(X_{t}^{x, 1},\dotsb, X_{t}^{x, d})$ に対し It\^{o}'s formula を適用すると
         \begin{align}
             f(X_{t}^{x})
@@ -225,7 +225,7 @@
             := \frac{1}{2}\sum_{i, i'=1}^{d}(\sigma\sigma^{\ast})_{ii'}(x)\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(x)
             + \sum_{i=1}^{d}b_{i}(x)\frac{\partial f}{\partial x_{i}}(x)
         \end{align}
-        と定めると，$g\in C_{0}(\mathbf{R}^d)\nazo.$
+        と定めると，$g\in C_{0}(\mathbb{R}^d)\nazo.$
         
         \begin{screen}
             $\because)$
@@ -276,5 +276,19 @@
         したがって $f\in D(L)$ かつ $Lf=g$ が言えた．
     \end{enumerate}
 \end{proof}
+
+\begin{screen}
+    \begin{cor}\label{cor:808}
+        $(X_{t})_{t\ge0}$: filtered probability space $(\Omega, \mathcal{F}, (\mathcal{F}_t), P)$ 上の $E(\sigma, b)$ の解 \\
+        $\implies (X_{t})_{t\ge0}$ は strong Markov property を満たす：
+        $T$: stopping time, $\Phi:C(\mathbb{R}_{+}, \mathbb{R}^d)\to\mathbb{R}_{+}$: Borel 可測関数に対し
+        \begin{align}
+            E[\bm{1}_{\{T<\infty\}}\Phi(X_{T+t}, t\ge0)\mid\mathcal{F}_{T}]
+            = \bm{1}_{\{T<\infty\}}\mathbb{E}_{X_{T}}[\Phi].
+        \end{align}
+
+        ただし $\forall x\in\mathbb{R}^d$ に対し $\mathbb{P}_{x}$ は $E_{x}(\sigma, b)$ の任意の解の $C(\mathbb{R}_{+}, \mathbb{R}^d)$ 上の分布を表す．
+    \end{cor}
+\end{screen}
 
 \end{document}
