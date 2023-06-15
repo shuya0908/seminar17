@@ -27,7 +27,7 @@
     \begin{thm}\label{thm:807}~
         \begin{enumerate}[label=(\arabic*)]
             \item
-            半群 $(Q_t)_{t\ge0}$ は Feller 半群である．
+            $(Q_t)_{t\ge0}$ は Feller 半群である．
             \item
             $(Q_t)_{t\ge0}$ の生成作用素 $L$ は
             \begin{align}
@@ -61,16 +61,17 @@
         $f\in C_{0}(\mathbb{R}^d)$: 固定．
         \begin{enumerate}[label=(\roman*)]
             \item
-            写像 $x\mapsto F_{x}(w)$ が連続であること，(8.2) 式
+            $n\to\infty$ としたとき $x_{n}\to x_{0}$ となる点列 $\{x_{n}\}_{n}$ をとる．
+            $\lvert f(F_{x}(w)_{t})\rvert\le\lVert f\rVert$ より優収束定理から
             \begin{align}
-                Q_{t}f(x)
-                = \int_{C(\mathbb{R_+}, \mathbb{R}^{m})}f(F_{x}(w)_{t})W(dw)
+                \lim_{n\to\infty}Q_{t}f(x_{n})
+                &= \lim_{n\to\infty}\int_{C(\mathbb{R_+}, \mathbb{R}^{m})}f(F_{x_{n}}(w)_{t})W(dw) \\
+                &= \int_{C(\mathbb{R_+}, \mathbb{R}^{m})}\lim_{n\to\infty}f(F_{x_{n}}(w)_{t})W(dw) \\
+                &= \int_{C(\mathbb{R_+}, \mathbb{R}^{m})}f(F_{x_{0}}(w)_{t})W(dw)
+                \quad\text{（$\because x\mapsto F_{x}(w)$ と $f$ の連続性）} \\
+                &= Q_{t}f(x_{0})
             \end{align}
-            と優収束定理より $Q_{t}f$: 連続\nazo．
-            
-            \begin{screen}
-                $\because)$
-            \end{screen}
+            より $Q_{t}f$: 連続．
             \begin{align}
                 X_{t}^{x}
                 = x
@@ -130,7 +131,7 @@
             \begin{align}
                 \lim_{x\to\infty}Q_{t}f(x)=0.
             \end{align}
-            
+
             以上より $Q_{t}f$ は $\mathbb{R}^d$ 上の実数値連続関数で $\lim_{x\to\infty}Q_{t}f(x)=0$ を満たすので $Q_{t}f\in C_{0}(\mathbb{R}^d).$
                 
             \item
@@ -156,6 +157,8 @@
                 \limsup_{t\to0}\lVert Q_{t}f-f\rVert
                 &= \limsup_{t\to0}(\sup_{x\in\mathbb{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert) \\
                 &\le \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
+                + 2\lVert f\rVert\lim_{t\to0}\sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon) \\
+                &= \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
             \end{align}
             となるが，$f$ の連続性より $\varepsilon$ を十分小さくとれば LHS $=0.$
             したがって $\lim_{t\to0}\lVert Q_{t}f-f\rVert.$
@@ -192,6 +195,22 @@
 
         \begin{screen}
             $\because)$
+            \begin{align}
+                &\langle X^{x, i}, X^{x, i'}\rangle_{t} \\
+                &= \langle x_i
+                + \sum_{j=1}^{m}\int_{0}^{\cdot}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}
+                + \int_{0}^{\cdot}b_{i}(X_{s}^{x})ds, 
+                x_{i'}
+                + \sum_{j=1}^{m}\int_{0}^{\cdot}\sigma_{i'j}(X_{s}^{x})dB_{s}^{j}
+                + \int_{0}^{\cdot}b_{i'}(X_{s}^{x})ds\rangle_{t} \\
+                &= \sum_{j=1}^{m}\int_{0}^{t}\sigma_{ij}(X_{s}^{x})\sigma_{i'j}(X_{s}^{x})ds.
+            \end{align}
+            \begin{align}
+                \therefore d\langle X^{x, i}, X^{x, i'}\rangle_{s}
+                = \sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})\sigma_{i'j}(X_{s}^{x})ds.
+            \end{align}
+
+            また $\sigma\sigma^{\ast}$（$d\times d$ 行列）の $ii'$ 成分を実際に計算すると $\sum_{j=1}^{m}\sigma_{ij}\sigma_{i'j}$ となることがわかる．
         \end{screen}
         
         これらより
@@ -225,13 +244,13 @@
             := \frac{1}{2}\sum_{i, i'=1}^{d}(\sigma\sigma^{\ast})_{ii'}(x)\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(x)
             + \sum_{i=1}^{d}b_{i}(x)\frac{\partial f}{\partial x_{i}}(x)
         \end{align}
-        と定めると，$g\in C_{0}(\mathbb{R}^d)\nazo.$
+        と定めると，$\forall i, i'=\{1,\dotsb, d\}$ に対し $\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}, \frac{\partial f}{\partial x_{i}}$ はコンパクトサポートを持つので
+        \begin{align}
+            \frac{\partial f^2}{\partial x_{i}\partial x_{i'}}, \frac{\partial f}{\partial x_{i}}\in C_{0}(\mathbf{R}^d).
+        \end{align}
         
-        \begin{screen}
-            $\because)$
-        \end{screen}
-
-        よって
+        これと $\sigma, b$ の有界性より $g\in C_{0}(\mathbb{R}^d).$
+        この $g$ を用いて
         \begin{align}
             M_{t}
             = f(X_{t}^{x})
@@ -296,8 +315,8 @@
     あるいは Theorem 8.6 の証明と同様に，stopping time $T$ に Theorem 8.6 の証明における決定論的な時刻 $s$ と同じ役割を持たせ，BM の strong Markov property (Theorem 2.20) を用いて議論することもできる．
 \end{proof}
 
-確率微分方程式の解として得られる連続な sample paths を持つ Markov 過程を diffusion process（拡散過程）と呼ぶことがある（ある著者は $\mathbb{R}^d$ または多様体上の連続な sample paths を持つ強 Markov 過程を拡散過程と呼ぶ）．
-なお，ここで考える Lipschitz の設定でも，Theorem 8.7 は生成作用素 $L$ を完全に特定するものではなく，領域 $D(L)$ の部分集合に対する作用に過ぎない：Chapter 6 で既に述べたように，領域を完全に記述することはしばしば非常に困難である．
+確率微分方程式の解として得られる連続な sample paths を持つ Markov 過程を \textbf{diffusion process（拡散過程）}と呼ぶことがある（$\mathbb{R}^d$ または多様体上の連続な sample paths を持つ強 Markov 過程を拡散過程と呼ぶ流儀もある）．
+なお，ここで考えている Lipschitz の設定でも，Theorem 8.7 は生成作用素 $L$ を完全に特定するものではなく，領域 $D(L)$ の部分集合に対する作用に過ぎない：Chapter 6 で既に述べたように，領域を完全に記述することはしばしば非常に困難である．
 しかしながら，多くの場合 Theorem 8.7 で与えられるような生成作用素の部分的な情報が，過程の確率法則を特徴づけるのに十分であることを示すことができる．
 この観察は Stroock と Varadhan による古典的な本 [77] で展開されており，martingale 問題の強力な理論の中核をなすものである．
 
