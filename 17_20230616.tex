@@ -123,7 +123,7 @@
                 + \lVert f\rVert \limsup_{x\to\infty}P(\lvert X_{t}^{x}-x\rvert>A) \\
                 &\le \lvert E[\limsup_{x\to\infty}f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
                 + \lVert f\rVert \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>A) \\
-                &= \lVert f\rVert \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>A).
+                &\le \frac{\lVert f\rVert C(t+t^2)}{A^2}.
             \end{align}
 
             よって $A$ の任意性より $\limsup_{x\to\infty}\lvert Q_{t}f(x)\rvert=0.$
@@ -389,12 +389,54 @@ It\^{o}'s formula を適用することで，解は
     共分散関数
     \begin{align}
         K(s, t)
-        := \operatorname{cov}(X_{s}, X_{t})
-        = 
+        &:= \operatorname{cov}(X_{s}, X_{t}) \\
+        &= E[(\int_{0}^{s}e^{-\lambda(s-u)}dB_{u})(\int_{0}^{t}e^{-\lambda(t-u)}dB_{u})] \\
+        &= e^{-\lambda(t+s)}E[(\int_{0}^{s}e^{\lambda u}dB_{u})(\int_{0}^{t}e^{\lambda u}dB_{u})] \\
+        &= \frac{e^{-\lambda(t+s)}}{2\lambda}E[e^{2\lambda(t\wedge s)}-1] \\
+        &= \frac{e^{-\lambda(t+s)}(e^{2\lambda(t\wedge s)}-1)}{2\lambda} \\
+        &= \frac{e^{-\lambda\lvert t-s\rvert}-e^{-\lambda(t+s)}}{2\lambda}
     \end{align}
+    を持つ．
+
+    \begin{screen}
+        $\because)$
+        \begin{align}
+            (\int_{0}^{s}e^{\lambda u}dB_{u})(\int_{0}^{t}e^{\lambda u}dB_{u})
+            &= 
+            \begin{cases}
+                \displaystyle (\int_{0}^{s}e^{\lambda u}dB_{u})(\int_{0}^{s}e^{\lambda u}\bm{1}_{[0, t]}dB_{u}) & (s>t) \\
+                \displaystyle (\int_{0}^{t}e^{\lambda u}\bm{1}_{[0, s]}dB_{u})(\int_{0}^{t}e^{\lambda u}dB_{u}) & (s\le t)
+            \end{cases} \\
+            &= 
+            \begin{cases}
+                \displaystyle \int_{0}^{t}e^{2\lambda u}du & (s>t) \\
+                \displaystyle \int_{0}^{s}e^{2\lambda u}du & (s\le t)
+            \end{cases} \\
+            &= \int_{0}^{t\wedge s}e^{2\lambda u}du
+            = \frac{e^{2\lambda(t\wedge s)}-1}{2\lambda}.
+        \end{align}
+    \end{screen}
+    
     \item
     $X_{0}$ が正規分布 $\mathcal{N}(0, 1/2\lambda)$ に従うとき：
-    
+    $E[X_0]=0, E[X_0^2]=1/2\lambda$ より
+    \begin{itemize}
+        \item 
+        $m(t):=E[X_t]=0.$
+        \item 
+        \begin{align}
+            K(s, t)
+            &:= \operatorname{cov}(X_{s}, X_{t}) \\
+            &= E[(X_s-E[X_s])(X_t-E[X_t])]
+            = E[X_s X_t] \\
+            &= E[(X_0e^{-\lambda s}+\int_{0}^{s}e^{-\lambda(s-u)}dB_{u})
+            (X_0e^{-\lambda t}+\int_{0}^{t}e^{-\lambda(t-u)}dB_{u})] \\
+            &= E[X_0^2]e^{-\lambda(t+s)}
+            + E[(\int_{0}^{s}e^{-\lambda(s-u)}dB_{u})(\int_{0}^{t}e^{-\lambda(t-u)}dB_{u})] \\
+            &= \frac{e^{-\lambda(t+s)}+e^{-\lambda\lvert t-s\rvert}-e^{-\lambda(t+s)}}{2\lambda}
+            = \frac{e^{-\lambda\lvert t-s\rvert}}{2\lambda}.
+        \end{align}
+    \end{itemize}
 \end{enumerate}
 
 \end{document}
