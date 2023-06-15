@@ -325,4 +325,76 @@
 確率微分方程式と偏微分方程式の関連については，Durrett [18, Chapter 9] と Friedman [26, 27] を参照されたい．
 このような確率と解析の結びつきは，確率微分方程式の定義と研究の重要な動機であった．
 
+
+\subsection{A Few Examples of Stochastic Differential Equations}
+
+$d=1$ とする．
+
+\subsubsection{The Ornstein-Uhlenbeck Process}
+
+$\lambda>0$ とする．
+確率微分方程式
+\begin{align}
+    dX_{t}
+    = dB_{t} - \lambda X_{t}dt
+\end{align}
+の解を（1 次元）\textbf{Ornstein-Uhlenbeck 過程}という．
+It\^{o}'s formula を適用することで，解は
+\begin{align}
+    X_{t}
+    = X_{0}e^{-\lambda t}
+    + \int_{0}^{t}e^{-\lambda(t-s)}dB_{s}
+\end{align}
+とわかる．
+
+\begin{screen}
+    $\because)$
+    $f(t, x)=e^{\lambda t}x$ に対して It\^{o}'s formula を適用すると
+    \begin{align}
+        f(t, X_{t})
+        = f(0, X_{0})
+        + \int_{0}^{t}\frac{\partial f}{\partial x}(s, X_{s})dX_{s}
+        + \int_{0}^{t}(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2})(s, X_{s})d\langle X, X\rangle_{s}
+    \end{align}
+    より
+    \begin{align}
+        e^{\lambda t}X_{t}
+        &= X_{0}
+        + \int_{0}^{t}e^{\lambda s}dX_{s}
+        + \int_{0}^{t}\lambda e^{\lambda s}X_{s}ds \\
+        &= X_{0}
+        + \int_{0}^{t}e^{\lambda s}(dB_{s} - \lambda X_{s}ds)
+        + \int_{0}^{t}\lambda e^{\lambda s}X_{s}ds \\
+        &= X_{0}
+        + \int_{0}^{t}e^{\lambda s}dB_{s}.
+    \end{align}
+    \begin{align}
+        \therefore X_{t}
+        = X_{0}e^{-\lambda t}
+        + \int_{0}^{t}e^{-\lambda(t-s)}dB_{s}.
+    \end{align}
+\end{screen}
+
+確率積分は Wiener 積分（決定論的な積分）なので，$B$ から生成される Gaussian space に属することに注意（つまり $E[\int_{0}^{t}e^{-\lambda(t-s)}dB_{s}]=0$）．
+
+\begin{enumerate}[label=(\roman*)]
+    \item
+    $X_{0}=x\in\mathbb{R}$ のとき：
+    $X$ は平均関数
+    \begin{align}
+        m(t)
+        := E[X_{t}]
+        = xe^{-\lambda t},
+    \end{align}
+    共分散関数
+    \begin{align}
+        K(s, t)
+        := \operatorname{cov}(X_{s}, X_{t})
+        = 
+    \end{align}
+    \item
+    $X_{0}$ が正規分布 $\mathcal{N}(0, 1/2\lambda)$ に従うとき：
+    
+\end{enumerate}
+
 \end{document}
