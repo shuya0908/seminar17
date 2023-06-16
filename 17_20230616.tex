@@ -442,4 +442,50 @@ It\^{o}'s formula を適用することで，解は
     \end{itemize}
 \end{enumerate}
 
+\subsubsection{Geometric Brownian Motion}
+
+$\sigma>0, r\in\mathbb{R}$ とする．
+確率微分方程式
+\begin{align}
+    dX_t
+    = \sigma X_t dB_t
+    + rX_t dt
+\end{align}
+の解をパラメータ $\sigma, r$ を持つ \textbf{geometric Brownian motion（幾何ブラウン運動）}という．
+It\^{o}'s formula を適用することで，解は
+\begin{align}
+    X_t
+    = X_0\exp{(\sigma B_t+(r-\frac{\sigma^2}{2})t)}
+\end{align}
+とわかる．
+
+\begin{screen}
+    $\because) f(x)=\log x$ に対して It\^{o}'s formula を適用すると，$\langle X, X\rangle_t=\int_0^t \sigma^2 X_s^2 ds\implies d\langle X, X\rangle_s=\sigma^2 X_s^2 ds$ であることから
+    \begin{align}
+        \log{X_t}
+        &= \log{X_0}
+        + \int_0^t\frac{1}{X_s}(\sigma X_s dB_s+rX_s ds)
+        -\frac{1}{2}\int_0^t \frac{1}{X_s^2}\sigma^2 X_s^2 ds \\
+        &= \log{X_0}
+        + \sigma B_t
+        + rt
+        -\frac{\sigma^2}{2}t \\
+        &= \log(X_0\exp(\sigma B_t+(r-\frac{\sigma^2}{2})t))
+    \end{align}
+    \begin{align}
+        \therefore X_t
+        = X_0\exp(\sigma B_t+(r-\frac{\sigma^2}{2})t).
+    \end{align}
+\end{screen}
+
+特に $X_0\ge0$ ならば，解は $t\ge0$ で非負値をとる．
+幾何 BM は金融数学の Black-Scholes モデルに使われる．
+理由としては，互いに素な時間間隔に対応する連続的な比率
+\begin{align}
+    \frac{X_{t_2}-X_{t_1}}{X_{t_1}}, 
+    \frac{X_{t_3}-X_{t_2}}{X_{t_2}}, \dotsb, 
+    \frac{X_{t_n}-X_{t_{n-1}}}{X_{t_{n-1}}}
+\end{align}
+が独立である，という経済学における仮定に由来するが，これは BM の独立増分性に他ならない．
+
 \end{document}
