@@ -144,6 +144,19 @@
             
             \begin{screen}
                 $\because)$
+                \begin{align}
+                    &\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert \\
+                    &= \lvert E[f(X_{t}^{x}-x)]-f(x)+f(y)-E[f(y)]\rvert
+                    \quad(\forall y\in \bar{B}_{\varepsilon}(x)\subset \mathbb{R}^d) \\
+                    &\le \lvert f(x)-f(y)\rvert
+                    + \lvert E[f(X_{t}^{x})-f(y)]\rvert \\
+                    &\le \lvert f(x)-f(y)\rvert
+                    + \lvert E[(f(X_{t}^{x})-f(y))\bm{1}_{\{\lvert X_t^x-x\rvert\le\varepsilon\}}]\rvert
+                    + \lvert E[(f(X_{t}^{x})-f(y))\bm{1}_{\{\lvert X_t^x-x\rvert>\varepsilon\}}]\rvert \\
+                    &\le \lvert f(x)-f(y)\rvert
+                    + \lvert E[(f(X_{t}^{x})-f(y))\bm{1}_{\{\lvert X_t^x-y\rvert\le2\varepsilon\}}]\rvert
+                    + 2\lVert f\rVert P(\lvert X_t^x-x\rvert>\varepsilon)
+                \end{align}
             \end{screen}
 
             ここで \eqref{eq:804} 及び Markov の不等式より
