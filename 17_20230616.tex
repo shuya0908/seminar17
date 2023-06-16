@@ -436,6 +436,9 @@ It\^{o}'s formula を適用することで，解は
             &= \frac{e^{-\lambda(t+s)}+e^{-\lambda\lvert t-s\rvert}-e^{-\lambda(t+s)}}{2\lambda}
             = \frac{e^{-\lambda\lvert t-s\rvert}}{2\lambda}.
         \end{align}
+
+        よって，このとき $X$ は正規分布 $\mathcal{N}(0, e^{-\lambda\lvert t-s\rvert}/2\lambda)$ に従う centered Gaussian process.
+        さらに $X$ の共分散関数 $K(s, t)$ は $t-s$ にのみ依存して定まるので，Ornstein-Uhlenbeck 過程は $\mathbb{R}_+$ で添え字付けられた stationary Gaussian process であり，Markov 過程である．
     \end{itemize}
 \end{enumerate}
 
