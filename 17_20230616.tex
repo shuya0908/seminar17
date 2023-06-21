@@ -322,18 +322,20 @@ It\^{o}'s formula を適用することで，解は
     \begin{align}
         f(t, X_{t})
         = f(0, X_{0})
+        + \int_{0}^{t}\frac{\partial f}{\partial t}(s, X_{s})ds
         + \int_{0}^{t}\frac{\partial f}{\partial x}(s, X_{s})dX_{s}
-        + \int_{0}^{t}(\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2})(s, X_{s})d\langle X, X\rangle_{s}
+        + \frac{1}{2}\int_{0}^{t}\frac{\partial^2 f}{\partial x^2}(s, X_{s})d\langle X, X\rangle_{s}
     \end{align}
     より
     \begin{align}
         e^{\lambda t}X_{t}
         &= X_{0}
-        + \int_{0}^{t}e^{\lambda s}dX_{s}
-        + \int_{0}^{t}\lambda e^{\lambda s}X_{s}ds \\
+        + \int_{0}^{t}\lambda e^{\lambda s}X_{s}ds
+        + \int_{0}^{t}e^{\lambda s}dX_{s} \\
         &= X_{0}
-        + \int_{0}^{t}e^{\lambda s}(dB_{s} - \lambda X_{s}ds)
-        + \int_{0}^{t}\lambda e^{\lambda s}X_{s}ds \\
+        + \int_{0}^{t}\lambda e^{\lambda s}X_{s}ds
+        + \int_{0}^{t}e^{\lambda s}dB_{s} 
+        - \int_{0}^{t}\lambda e^{\lambda s}X_{s}ds \\
         &= X_{0}
         + \int_{0}^{t}e^{\lambda s}dB_{s}.
     \end{align}
@@ -359,10 +361,9 @@ It\^{o}'s formula を適用することで，解は
     \begin{align}
         K(s, t)
         &:= \operatorname{cov}(X_{s}, X_{t}) \\
-        &= E[(\int_{0}^{s}e^{-\lambda(s-u)}dB_{u})(\int_{0}^{t}e^{-\lambda(t-u)}dB_{u})] \\
-        &= e^{-\lambda(t+s)}E[(\int_{0}^{s}e^{\lambda u}dB_{u})(\int_{0}^{t}e^{\lambda u}dB_{u})] \\
-        &= \frac{e^{-\lambda(t+s)}}{2\lambda}E[e^{2\lambda(t\wedge s)}-1] \\
-        &= \frac{e^{-\lambda(t+s)}(e^{2\lambda(t\wedge s)}-1)}{2\lambda} \\
+        &= E[\int_{0}^{s}e^{-\lambda(s-u)}dB_{u}\int_{0}^{t}e^{-\lambda(t-v)}dB_{v}] \\
+        &= e^{-\lambda(t+s)}E[\int_{0}^{s}e^{\lambda u}dB_{u}\int_{0}^{t}e^{\lambda v}dB_{v}] \\
+        &= e^{-\lambda(t+s)}\frac{e^{2\lambda(t\wedge s)}-1}{2\lambda} \\
         &= \frac{e^{-\lambda\lvert t-s\rvert}-e^{-\lambda(t+s)}}{2\lambda}
     \end{align}
     を持つ．
@@ -370,11 +371,11 @@ It\^{o}'s formula を適用することで，解は
     \begin{screen}
         $\because)$
         \begin{align}
-            (\int_{0}^{s}e^{\lambda u}dB_{u})(\int_{0}^{t}e^{\lambda u}dB_{u})
+            E[\int_{0}^{s}e^{\lambda u}dB_{u}\int_{0}^{t}e^{\lambda v}dB_{v}]
             &= 
             \begin{cases}
-                \displaystyle (\int_{0}^{s}e^{\lambda u}dB_{u})(\int_{0}^{s}e^{\lambda u}\bm{1}_{[0, t]}dB_{u}) & (s>t) \\
-                \displaystyle (\int_{0}^{t}e^{\lambda u}\bm{1}_{[0, s]}dB_{u})(\int_{0}^{t}e^{\lambda u}dB_{u}) & (s\le t)
+                \displaystyle E[\int_{0}^{s}e^{\lambda u}dB_{u}\int_{0}^{s}e^{\lambda v}\bm{1}_{[0, t]}dB_{v}] & (s>t) \\
+                \displaystyle E[\int_{0}^{t}e^{\lambda u}\bm{1}_{[0, s]}dB_{u}\int_{0}^{t}e^{\lambda v}\bm{1}_{[0, t]}dB_{v}] & (s\le t)
             \end{cases} \\
             &= 
             \begin{cases}
@@ -399,9 +400,9 @@ It\^{o}'s formula を適用することで，解は
             &= E[(X_s-E[X_s])(X_t-E[X_t])]
             = E[X_s X_t] \\
             &= E[(X_0e^{-\lambda s}+\int_{0}^{s}e^{-\lambda(s-u)}dB_{u})
-            (X_0e^{-\lambda t}+\int_{0}^{t}e^{-\lambda(t-u)}dB_{u})] \\
+            (X_0e^{-\lambda t}+\int_{0}^{t}e^{-\lambda(t-v)}dB_{v})] \\
             &= E[X_0^2]e^{-\lambda(t+s)}
-            + E[(\int_{0}^{s}e^{-\lambda(s-u)}dB_{u})(\int_{0}^{t}e^{-\lambda(t-u)}dB_{u})] \\
+            + E[\int_{0}^{s}e^{-\lambda(s-u)}dB_{u}\int_{0}^{t}e^{-\lambda(t-v)}dB_{v}] \\
             &= \frac{e^{-\lambda(t+s)}+e^{-\lambda\lvert t-s\rvert}-e^{-\lambda(t+s)}}{2\lambda}
             = \frac{e^{-\lambda\lvert t-s\rvert}}{2\lambda}.
         \end{align}
