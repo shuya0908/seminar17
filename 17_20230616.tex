@@ -46,7 +46,7 @@
 \end{screen}
 
 \begin{proof}
-    問題を単純にするため，$\sigma, b$ が有界の場合のみ示す（一般の場合？）．
+    簡単のため，$\sigma, b$ が有界の場合のみ示す（一般の場合？）．
     \begin{enumerate}[label=(\arabic*)]
         \item
         示すべきことは
@@ -62,7 +62,7 @@
         \begin{enumerate}[label=(\roman*)]
             \item
             $n\to\infty$ としたとき $x_{n}\to x_{0}$ となる点列 $\{x_{n}\}_{n}$ をとる．
-            $\lvert f(F_{x}(w)_{t})\rvert\le\lVert f\rVert$ より優収束定理から
+            各 $n\ge1$ に対し $\lvert f(F_{x_n}(w)_{t})\rvert\le\lVert f\rVert$ より優収束定理から
             \begin{align}
                 \lim_{n\to\infty}Q_{t}f(x_{n})
                 &= \lim_{n\to\infty}\int_{C(\mathbb{R_+}, \mathbb{R}^{m})}f(F_{x_{n}}(w)_{t})W(dw) \\
@@ -80,21 +80,21 @@
             \end{align}
             と書けることと，$\sigma, b$: 有界より
             \begin{align}
-                E[(X_{t}^{x}-x)^2]
-                &= E[(\int_{0}^{t}\sigma(X_{s}^{x})dB_{s}
-                + \int_{0}^{t}b(X_{s}^{x})ds)^2] \\
-                &\le 2(E[(\int_{0}^{t}\sigma(X_{s}^{x})dB_{s})^2]
-                + E[(\int_{0}^{t}b(X_{s}^{x})ds)^2]) \\
-                &\le 2(E[\int_{0}^{t}(\sigma(X_{s}^{x}))^{2}ds]
-                + tE[\int_{0}^{t}(b(X_{s}^{x}))^{2}ds]) \\
-                &\le 2(\lVert \sigma^2\rVert t+\lVert b^2\rVert t^2) \\
-                &\le 2(\lVert \sigma^2\rVert\vee\lVert b^2\rVert)(t+t^2).
+                E[\lvert X_{t}^{x}-x\rvert^2]
+                &= E[\lvert \int_{0}^{t}\sigma(X_{s}^{x})dB_{s}
+                + \int_{0}^{t}b(X_{s}^{x})ds\rvert^2] \\
+                &\le 2(E[\lvert \int_{0}^{t}\sigma(X_{s}^{x})dB_{s})^2]
+                + E[(\int_{0}^{t}b(X_{s}^{x})ds\rvert^2]) \\
+                &\le 2(E[\int_{0}^{t}\lvert \sigma(X_{s}^{x})\rvert^{2}ds]
+                + tE[\int_{0}^{t}\lvert b(X_{s}^{x})\rvert^{2}ds]) \\
+                &\le 2(C_1^2 t+C_2^2 t^2) \\
+                &\le (2C_1^2\vee 2C_2^2)(t+t^2).
             \end{align}
 
-            ここで $C:=2(\lVert \sigma^2\rVert\vee\lVert b^2\rVert)$ と定めると，これは $t, x$ に依らない定数で
+            ここで $C:=2C_1^2\vee 2C_2^2$ と定めると，これは $t, x$ に依らない定数で
             \setcounter{equation}{3}
             \begin{align}
-                \sup_{x\in\mathbb{R}^d}E[(X_{t}^{x}-x)^2]
+                \sup_{x\in\mathbb{R}^d}E[\lvert X_{t}^{x}-x\rvert^2]
                 \le C(t+t^2).
                 \label{eq:804}
             \end{align}
@@ -102,62 +102,51 @@
             $\forall t\ge0$ に対し，Markov の不等式（Chebyshev の不等式の特別な場合）と \eqref{eq:804} より
             \begin{align}
                 \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>A)
-                &\le \frac{\sup_{x\in\mathbb{R}^d}E[(X_{t}^{x}-x)^2]}{A^2} \\
+                &\le \sup_{x\in\mathbb{R}^d}\frac{E[\lvert X_{t}^{x}-x\rvert^2]}{A^2} \\
                 &\le \frac{C(t+t^2)}{A^2}\xrightarrow{A\to\infty}0.
             \end{align}
 
             一方
             \begin{align}
                 \lvert Q_{t}f(x)\rvert
-                &= \lvert E[f(X_{t}^{x})]\rvert \\
-                &\le \lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
-                + \lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert>A\}}]\rvert \\
-                &\le \lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
+                &\le E[\lvert f(X_{t}^{x})\rvert] \\
+                &= E[\lvert f(X_{t}^{x})\rvert\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]
+                + E[\lvert f(X_{t}^{x})\rvert\bm{1}_{\{\lvert X_{t}^{x}-x\rvert>A\}}] \\
+                &\le E[\lvert f(X_{t}^{x})\rvert\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]
                 + \lVert f\rVert P(\lvert X_{t}^{x}-x\rvert>A).
             \end{align}
 
             これと $f\in C_{0}(\mathbb{R}^d)$ より
             \begin{align}
-                \limsup_{x\to\infty}\lvert Q_{t}f(x)\rvert
-                &\le \limsup_{x\to\infty}\lvert E[f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
-                + \lVert f\rVert \limsup_{x\to\infty}P(\lvert X_{t}^{x}-x\rvert>A) \\
-                &\le \lvert E[\limsup_{x\to\infty}f(X_{t}^{x})\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le A\}}]\rvert
+                \limsup_{\lvert x\rvert\to\infty}\lvert Q_{t}f(x)\rvert
+                &\le \limsup_{\lvert x\rvert\to\infty}(\sup_{y\in\mathbb{R}^d, \lvert x-y\rvert\le A}\lvert f(y)\rvert)
                 + \lVert f\rVert \sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>A) \\
                 &\le \frac{\lVert f\rVert C(t+t^2)}{A^2}.
             \end{align}
 
-            よって $A$ の任意性より $\limsup_{x\to\infty}\lvert Q_{t}f(x)\rvert=0.$
-            したがって $\lim_{x\to\infty}\lvert Q_{t}f(x)\rvert=0$ より 
+            よって $A$ の任意性より $\limsup_{\lvert x\rvert\to\infty}\lvert Q_{t}f(x)\rvert=0.$
+            したがって $\lim_{\lvert x\rvert\to\infty}\lvert Q_{t}f(x)\rvert=0$ より 
             \begin{align}
-                \lim_{x\to\infty}Q_{t}f(x)=0.
+                \lim_{\lvert x\rvert\to\infty}Q_{t}f(x)=0.
             \end{align}
 
-            以上より $Q_{t}f$ は $\mathbb{R}^d$ 上の実数値連続関数で $\lim_{x\to\infty}Q_{t}f(x)=0$ を満たすので $Q_{t}f\in C_{0}(\mathbb{R}^d).$
+            以上より $Q_{t}f$ は $\mathbb{R}^d$ 上の実数値連続関数で $\lim_{\lvert x\rvert\to\infty}Q_{t}f(x)=0$ を満たすので $Q_{t}f\in C_{0}(\mathbb{R}^d).$
                 
             \item
             $\forall \varepsilon>0$: 固定．
             \begin{align}
-                \sup_{x\in\mathbb{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert
-                \le \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
-                + 2\lVert f\rVert\sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon)\nazo.
+                \lvert E[f(X_{t}^{x})]-f(x)\rvert
+                &\le E[\lvert f(X_{t}^{x})-f(x)\rvert\bm{1}_{\{\lvert X_{t}^{x}-x\rvert\le \varepsilon\}}]
+                + E[\lvert f(X_{t}^{x})-f(x)\rvert\bm{1}_{\{\lvert X_{t}^{x}-x\rvert>\varepsilon\}}] \\
+                &\le \sup_{y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
+                + 2\lVert f\rVert P(\lvert X_{t}^{x}-x\rvert>\varepsilon).
             \end{align}
-            
-            \begin{screen}
-                $\because)$
-                \begin{align}
-                    &\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert \\
-                    &= \lvert E[f(X_{t}^{x}-x)]-f(x)+f(y)-E[f(y)]\rvert
-                    \quad(\forall y\in \bar{B}_{\varepsilon}(x)\subset \mathbb{R}^d) \\
-                    &\le \lvert f(x)-f(y)\rvert
-                    + \lvert E[f(X_{t}^{x})-f(y)]\rvert \\
-                    &\le \lvert f(x)-f(y)\rvert
-                    + \lvert E[(f(X_{t}^{x})-f(y))\bm{1}_{\{\lvert X_t^x-x\rvert\le\varepsilon\}}]\rvert
-                    + \lvert E[(f(X_{t}^{x})-f(y))\bm{1}_{\{\lvert X_t^x-x\rvert>\varepsilon\}}]\rvert \\
-                    &\le \lvert f(x)-f(y)\rvert
-                    + \lvert E[(f(X_{t}^{x})-f(y))\bm{1}_{\{\lvert X_t^x-y\rvert\le2\varepsilon\}}]\rvert
-                    + 2\lVert f\rVert P(\lvert X_t^x-x\rvert>\varepsilon)
-                \end{align}
-            \end{screen}
+            \begin{align}
+                \therefore 
+                &\sup_{x\in\mathbb{R}^d}\lvert E[f(X_{t}^{x})]-f(x)\rvert \\
+                &\le \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
+                + 2\lVert f\rVert\sup_{x\in\mathbb{R}^d} P(\lvert X_{t}^{x}-x\rvert>\varepsilon).
+            \end{align}
 
             ここで \eqref{eq:804} 及び Markov の不等式より
             \begin{align}
@@ -168,12 +157,12 @@
             よって
             \begin{align}
                 \limsup_{t\to0}\lVert Q_{t}f-f\rVert
-                &= \limsup_{t\to0}(\sup_{x\in\mathbb{R}^d}\lvert E[f(X_{t}^{x}-x)]-f(x)\rvert) \\
+                &= \limsup_{t\to0}(\sup_{x\in\mathbb{R}^d}\lvert E[f(X_{t}^{x})]-f(x)\rvert) \\
                 &\le \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
                 + 2\lVert f\rVert\lim_{t\to0}\sup_{x\in\mathbb{R}^d}P(\lvert X_{t}^{x}-x\rvert>\varepsilon) \\
                 &= \sup_{x, y\in\mathbb{R}^d, \lvert x-y\rvert<\varepsilon}\lvert f(x)-f(y)\rvert
             \end{align}
-            となるが，$f$ の連続性より $\varepsilon$ を十分小さくとれば LHS $=0.$
+            となるが，$f$ の一様連続性より $\varepsilon$ を十分小さくとれば LHS $=0.$
             したがって $\lim_{t\to0}\lVert Q_{t}f-f\rVert.$
         \end{enumerate}
 
@@ -195,32 +184,21 @@
             $\displaystyle X_{t}^{x, i}
             = x_i
             + \sum_{j=1}^{m}\int_{0}^{t}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}
-            + \int_{0}^{t}b_{i}(X_{s}^{x})ds$ \\
-            $\displaystyle \implies dX_{s}^{x, i}
-            = \sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}
-            + b_{i}(X_{s}^{x})ds$
+            + \int_{0}^{t}b_{i}(X_{s}^{x})ds$
             \item 
-            $\displaystyle d\langle X^{x, i}, X^{x, i'}\rangle_{s}
-            = \sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})\sigma_{i'j}(X_{s}^{x})ds
-            = (\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})ds$
+            $\displaystyle \langle X^{x, i}, X^{x, i'}\rangle_{s}
+            = \sum_{j=1}^{m}\int_0^t\sigma_{ij}(X_{s}^{x})\sigma_{i'j}(X_{s}^{x})ds
+            = \int_0^t(\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})ds$
         \end{itemize}
         が成り立つ．
 
         \begin{screen}
             $\because)$
             \begin{align}
-                &\langle X^{x, i}, X^{x, i'}\rangle_{t} \\
-                &= \langle x_i
-                + \sum_{j=1}^{m}\int_{0}^{\cdot}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}
-                + \int_{0}^{\cdot}b_{i}(X_{s}^{x})ds, 
-                x_{i'}
-                + \sum_{j=1}^{m}\int_{0}^{\cdot}\sigma_{i'j}(X_{s}^{x})dB_{s}^{j}
-                + \int_{0}^{\cdot}b_{i'}(X_{s}^{x})ds\rangle_{t} \\
+                \langle X^{x, i}, X^{x, i'}\rangle_{t}
+                &= \left\langle \sum_{j=1}^{m}\int_{0}^{\cdot}\sigma_{ij}(X_{s}^{x})dB_{s}^{j},
+                \sum_{j=1}^{m}\int_{0}^{\cdot}\sigma_{i'j}(X_{s}^{x})dB_{s}^{j}\right\rangle_{t} \\
                 &= \sum_{j=1}^{m}\int_{0}^{t}\sigma_{ij}(X_{s}^{x})\sigma_{i'j}(X_{s}^{x})ds.
-            \end{align}
-            \begin{align}
-                \therefore d\langle X^{x, i}, X^{x, i'}\rangle_{s}
-                = \sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})\sigma_{i'j}(X_{s}^{x})ds.
             \end{align}
 
             また $\sigma\sigma^{\ast}$（$d\times d$ 行列）の $ii'$ 成分を実際に計算すると $\sum_{j=1}^{m}\sigma_{ij}\sigma_{i'j}$ となることがわかる．
@@ -232,8 +210,9 @@
             &=
             \begin{multlined}[t]
                 f(x)
-                + \sum_{i=1}^{d}\int_{0}^{t}\frac{\partial f}{\partial x_{i}}(X_{s}^{x})\left\{\sum_{j=1}^{m}\sigma_{ij}(X_{s}^{x})dB_{s}^{j}+b_{i}(X_{s}^{x})ds\right\} \\
-                + \frac{1}{2}\sum_{i, i'=1}^{d}\int_{0}^{t}\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(X_{s}^{x})\{(\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})ds\}
+                + \sum_{i=1}^{d}\left\{\sum_{j=1}^{m}\int_{0}^{t}\sigma_{ij}(X_{s}^{x})\frac{\partial f}{\partial x_{i}}(X_{s}^{x})dB_{s}^{j}
+                + \int_{0}^{t}b_{i}(X_{s}^{x})\frac{\partial f}{\partial x_{i}}(X_{s}^{x})ds\right\} \\
+                + \frac{1}{2}\sum_{i, i'=1}^{d}\int_{0}^{t}(\sigma\sigma^{\ast})_{ii'}(X_{s}^{x})\frac{\partial f^2}{\partial x_{i}\partial x_{i'}}(X_{s}^{x})ds
             \end{multlined} \\
             &=
             \begin{multlined}[t]
@@ -262,7 +241,7 @@
             \frac{\partial f^2}{\partial x_{i}\partial x_{i'}}, \frac{\partial f}{\partial x_{i}}\in C_{0}(\mathbf{R}^d).
         \end{align}
         
-        これと $\sigma, b$ の有界性より $g\in C_{0}(\mathbb{R}^d).$
+        これより $g\in C_{0}(\mathbb{R}^d).$
         この $g$ を用いて
         \begin{align}
             M_{t}
@@ -270,42 +249,19 @@
             - f(x)
             - \int_{0}^{t}g(X_{s}^{x})ds
         \end{align}
-        と表せるが，$f, g$: 有界より $M$ は有界 CLM であり，Proposition 4.7 (ii) から UIM であることまで言える．
-        $M$ の martingale 性より
+        と表せるが，$f, g$: 有界より $M$ は有界 CLM.
+        各 $n\ge1$ に対し $M^n:=(M_{t\wedge n})_{t\ge0}$ を考えると $\forall t\ge0$ に対し
         \begin{align}
-            E[f(X_{t}^{x})
+            \lvert M_{t\wedge n}\rvert
+            &= \lvert f(X_{t\wedge n}^{x})
             - f(x)
-            - \int_{0}^{t}g(X_{s}^{x})ds]
-            = 0.
+            - \int_{0}^{t\wedge n}g(X_{s}^{x})ds\rvert \\
+            &\le 2\lVert f\rVert + n\lVert g\rVert.
         \end{align}
-
-        一方，
-        \begin{align}
-            E[f(X_{t}^{x})
-            - f(x)
-            - \int_{0}^{t}g(X_{s}^{x})ds]
-            &= E[f(X_{t}^{x})]
-            - f(x)
-            - \int_{0}^{t}E[g(X_{s}^{x})]ds \\
-            &= Q_{t}f(x)
-            - f(x)
-            - \int_{0}^{t}Q_{s}g(x)ds.
-        \end{align}
-        \begin{align}
-            \therefore 
-            Q_{t}f(x) - f(x)
-            = \int_{0}^{t}Q_{s}g(x)ds.
-        \end{align}
-
-        $(Q_{t})_{t\ge0}$ が Feller 半群であることから
-        \begin{align}
-            Lf
-            = \lim_{t\to0}\frac{Q_{t}f - f}{t}
-            = \lim_{t\to0}\frac{1}{t}\int_{0}^{t}Q_{s}gds
-            = g.
-        \end{align}
-
-        したがって $f\in D(L)$ かつ $Lf=g$ が言えた．
+        
+        よって Proposition 4.7 (ii) から $M^n$: UIM なので $n$ の任意性から $M$: martingale.
+        特に $(f(X_{t}^{x}) - \int_{0}^{t}g(X_{s}^{x})ds)_{t\ge0}$ も martingale.
+        したがって Theorem 6.14 より $f\in D(L)$ かつ $Lf=g$ が言える．
     \end{enumerate}
 \end{proof}
 
